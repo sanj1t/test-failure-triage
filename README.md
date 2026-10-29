@@ -62,3 +62,44 @@ Requires Python 3.12 or newer.
 python -m pip install -e ".[dev]"
 python -m pytest -q
 ```
+
+## Generate the synthetic dataset
+
+From the project root:
+
+```bash
+python -m triage.generate_data
+```
+
+Default output:
+
+- File: `data/raw/test_failures.csv`
+- Records: 480
+- Categories: 4
+- Scenario families: 16
+- Samples per family: 30
+- Seed: 42
+
+Custom generation:
+
+```bash
+python -m triage.generate_data \
+  --samples-per-family 40 \
+  --seed 99 \
+  --output data/raw/test_failures_custom.csv
+```
+
+Generation replaces an existing file at the selected output path.
+
+### Limitations
+
+Labels are assigned by synthetic scenario design.
+
+The dataset is balanced and template-based; it does not represent
+real-world failure frequencies or establish production performance.
+
+Related examples share a scenario family. Later dataset splitting
+must keep each family entirely within one partition.
+
+The model must not use `scenario_family`, `incident_id`, or
+`timestamp` as input features.
