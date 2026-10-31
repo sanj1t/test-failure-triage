@@ -139,3 +139,41 @@ Exit codes:
 
 A validation pass checks structural and basic consistency rules.
 It does not establish label correctness, realism, or model quality.
+
+## Split the dataset
+
+```bash
+python -m triage.split_data
+```
+
+Outputs:
+
+- `data/processed/train.csv`
+- `data/processed/development.csv`
+- `data/processed/test.csv`
+- `data/processed/split_manifest.json`
+
+The split keeps each scenario family entirely within one partition.
+
+For each category:
+
+- One family is reserved for development.
+- One family is reserved for testing.
+- Remaining families are assigned to training.
+
+With the default dataset, this produces:
+
+| Partition | Records | Families |
+|---|---:|---:|
+| Train | 240 | 8 |
+| Development | 120 | 4 |
+| Test | 120 | 4 |
+
+The default split seed is 42.
+
+Training fits model parameters and preprocessing.
+Development supports model selection.
+Testing is reserved for the final evaluation.
+
+This split evaluates unseen synthetic scenario families.
+It does not establish performance on real engineering failures.
