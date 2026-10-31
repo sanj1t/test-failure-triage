@@ -34,3 +34,6 @@ artifacts/
 # Operating-system files
 .DS_Store
 Thumbs.db
+
+# Generated data-quality reports
+reports/data_quality*.json

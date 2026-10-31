@@ -103,3 +103,39 @@ must keep each family entirely within one partition.
 
 The model must not use `scenario_family`, `incident_id`, or
 `timestamp` as input features.
+
+## Validate a dataset
+
+```bash
+python -m triage.validate_data
+```
+
+Custom input and report:
+
+```bash
+python -m triage.validate_data \
+  --input data/raw/test_failures.csv \
+  --report reports/data_quality.json
+```
+
+The validator reports problems without modifying the dataset.
+
+Checks include:
+
+- Required, unexpected, and duplicate columns
+- Empty datasets and missing values
+- Duplicate incident IDs
+- Unknown categories
+- Invalid or negative integer fields
+- Invalid timestamps and missing timezone information
+- Inconsistent category assignments within a scenario family
+- Extra or missing CSV cells
+
+Exit codes:
+
+- 0: validation passed
+- 1: validation failed
+- 2: command or file-processing error
+
+A validation pass checks structural and basic consistency rules.
+It does not establish label correctness, realism, or model quality.
