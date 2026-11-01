@@ -177,3 +177,41 @@ Testing is reserved for the final evaluation.
 
 This split evaluates unseen synthetic scenario families.
 It does not establish performance on real engineering failures.
+
+## Dummy baseline
+
+Install project dependencies:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Run the baseline:
+
+```bash
+python -m triage.baseline
+```
+
+The baseline uses `DummyClassifier(strategy="most_frequent")`.
+
+It fits category frequencies using training labels and always
+predicts the selected most-frequent training category.
+
+It does not learn from failure messages or structured features.
+
+Development results on the default split:
+
+| Metric | Value |
+|---|---:|
+| Accuracy | 0.25 |
+| Macro-F1 | 0.10 |
+
+Generated outputs:
+
+- `reports/baseline/development_metrics.json`
+- `reports/baseline/development_predictions.csv`
+
+The test partition is not evaluated during this step.
+
+The baseline establishes a reference result, not a useful
+failure-triage capability.

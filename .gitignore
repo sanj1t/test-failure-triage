@@ -37,3 +37,6 @@ Thumbs.db
 
 # Generated data-quality reports
 reports/data_quality*.json
+
+# Generated baseline evaluation files
+reports/baseline/
