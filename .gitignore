@@ -40,3 +40,6 @@ reports/data_quality*.json
 
 # Generated baseline evaluation files
 reports/baseline/
+
+# Generated text-model evaluation files
+reports/text_logreg/

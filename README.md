@@ -215,3 +215,32 @@ The test partition is not evaluated during this step.
 
 The baseline establishes a reference result, not a useful
 failure-triage capability.
+
+## Text classifier: TF-IDF + logistic regression
+
+Run:
+
+```bash
+python -m triage.text_model
+```
+
+The model uses only `error_message` as its input column.
+
+Pipeline:
+
+1. TF-IDF over words and two-word sequences.
+2. Logistic regression.
+
+The vectorizer and classifier are fitted on training data only.
+Development data is transformed and evaluated without refitting.
+
+Outputs:
+
+- `reports/text_logreg/development_metrics.json`
+- `reports/text_logreg/development_predictions.csv`
+- `reports/text_logreg/development_errors.csv`
+
+The test partition remains unevaluated during model selection.
+
+Results apply to a small synthetic, template-based dataset.
+They do not establish performance on real engineering failures.
