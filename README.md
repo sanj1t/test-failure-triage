@@ -244,3 +244,39 @@ The test partition remains unevaluated during model selection.
 
 Results apply to a small synthetic, template-based dataset.
 They do not establish performance on real engineering failures.
+
+### Initial text-model development results
+
+| Model | Accuracy | Macro-F1 |
+|---|---:|---:|
+| Most-frequent baseline | 0.2500 | 0.1000 |
+| Word TF-IDF (1–2 grams) + logistic regression | 0.6917 | 0.6677 |
+
+The text model correctly classified 83 of 120 development records.
+
+The vectorizer learned 259 features from training data.
+
+Development contains four held-out synthetic scenario families.
+Results do not establish real-world performance.
+
+The test partition has not been evaluated.
+
+## Controlled representation comparison
+
+```bash
+python -m triage.compare_models
+```
+
+Compares three fixed configurations:
+
+- Word TF-IDF, 1–2 grams + logistic regression
+- Word TF-IDF, unigrams only + logistic regression
+- Within-word character TF-IDF, 3–5 grams + logistic regression
+
+Classifier settings are held constant.
+
+All candidates fit on training data and are evaluated on development
+data only. The test partition remains unevaluated.
+
+Primary comparison metric: development macro-F1, supported by
+per-category recall and error inspection.

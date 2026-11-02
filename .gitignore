@@ -43,3 +43,6 @@ reports/baseline/
 
 # Generated text-model evaluation files
 reports/text_logreg/
+
+# Generated controlled-comparison reports
+reports/model_comparison/
