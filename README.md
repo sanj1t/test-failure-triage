@@ -280,3 +280,41 @@ data only. The test partition remains unevaluated.
 
 Primary comparison metric: development macro-F1, supported by
 per-category recall and error inspection.
+
+### Development comparison results
+
+| Experiment | Accuracy | Macro-F1 | Errors | Features |
+|---|---:|---:|---:|---:|
+| Word TF-IDF, 1–2 grams | 0.6917 | 0.6677 | 37 | 259 |
+| Word TF-IDF, unigrams | 0.6833 | 0.6426 | 38 | 84 |
+| Character TF-IDF, 3–5 grams | 0.6917 | 0.6144 | 37 | 1140 |
+
+Provisional selection: word TF-IDF with 1–2 grams and logistic
+regression.
+
+Reason: highest development macro-F1 and joint-highest accuracy
+among the three fixed configurations.
+
+Character features did not justify replacing the original model:
+they increased the feature count, did not improve accuracy,
+and produced lower macro-F1.
+
+These results describe four synthetic development scenario families.
+They do not establish real-world performance or statistical
+superiority across other datasets.
+
+The test partition remains unevaluated.
+
+## Model-selection decision
+
+Selected configuration: word TF-IDF with 1–2 grams followed by
+logistic regression.
+
+Development accuracy: 0.6917  
+Development macro-F1: 0.6677
+
+See [Model selection and error analysis](docs/model_selection.md)
+for the controlled comparison, category-level results, representative
+errors, and limitations.
+
+The reserved test partition has not yet been evaluated.
