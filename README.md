@@ -353,3 +353,42 @@ Use the matching training environment when loading the model.
 
 The installed-package snapshot is recorded in
 `requirements-macos-py314.txt`.
+
+## Predict a failure category
+
+From the project root:
+
+```bash
+python -m triage.predict \
+  --message "Received data failed the integrity check"
+```
+
+The command loads the saved artifact at `artifacts/word_12_v1`.
+It does not retrain the model.
+
+To select another trusted local artifact:
+
+```bash
+python -m triage.predict \
+  --artifact-dir artifacts/word_12_v1 \
+  --message "Transfer stopped unexpectedly"
+```
+
+Behavior:
+
+- Rejects blank messages.
+- Limits messages to 10,000 characters.
+- Checks recorded environment versions before loading.
+- Prints a JSON prediction.
+- Returns exit status 2 on input or artifact errors.
+
+Only load trusted joblib artifacts.
+
+Predictions are synthetic-data triage suggestions, not verified
+root-cause diagnoses. Human review is required.
+
+The review flag is informational; this CLI does not enforce an
+approval workflow.
+
+The model has no abstention mechanism: valid nonempty text may receive
+a category even when it is unrelated to the training domain.
