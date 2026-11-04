@@ -318,3 +318,38 @@ for the controlled comparison, category-level results, representative
 errors, and limitations.
 
 The reserved test partition has not yet been evaluated.
+
+## Train and save the selected pipeline
+
+```bash
+python -m triage.train
+```
+
+Default artifact:
+
+- `artifacts/word_12_v1/model.joblib`
+- `artifacts/word_12_v1/metadata.json`
+
+The artifact contains the fitted TF-IDF vectorizer and classifier.
+
+Training uses the existing training partition only.
+Development and test records are not used to fit this artifact.
+
+Metadata records:
+
+- Training-file hash
+- Training incident IDs and scenario families
+- Model configuration
+- Python and dependency versions
+- Model limitations
+
+The command refuses to reuse an existing artifact directory.
+
+Only load joblib artifacts created by this project or obtained
+from a trusted, verified source. Loading untrusted artifacts
+can execute code.
+
+Use the matching training environment when loading the model.
+
+The installed-package snapshot is recorded in
+`requirements-macos-py314.txt`.
