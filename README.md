@@ -392,3 +392,40 @@ approval workflow.
 
 The model has no abstention mechanism: valid nonempty text may receive
 a category even when it is unrelated to the training domain.
+
+## Final held-out evaluation
+
+Run only after freezing the selected model:
+
+```bash
+python -m triage.evaluate
+```
+
+Default inputs:
+
+- Artifact: `artifacts/word_12_v1`
+- Held-out dataset: `data/processed/test.csv`
+
+Outputs:
+
+- `reports/final_test/word_12_v1/test_metrics.json`
+- `reports/final_test/word_12_v1/test_predictions.csv`
+- `reports/final_test/word_12_v1/test_errors.csv`
+
+The command:
+
+- Loads the saved pipeline without retraining.
+- Validates the evaluation dataset.
+- Rejects overlap with recorded training IDs or scenario families.
+- Records model, metadata, and dataset SHA-256 hashes.
+- Refuses to overwrite an existing evaluation directory.
+
+Training-membership checks depend on artifact metadata.
+They do not independently prove that test data was never used
+during development.
+
+The final test contains 120 synthetic records from four scenario
+families. Results do not establish real-world performance.
+
+Any later model changes informed by these test results must be
+documented as further development.

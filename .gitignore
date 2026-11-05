@@ -46,3 +46,6 @@ reports/text_logreg/
 
 # Generated controlled-comparison reports
 reports/model_comparison/
+
+# Generated held-out evaluation files
+reports/final_test/
