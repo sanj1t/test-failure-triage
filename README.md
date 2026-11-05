@@ -48,11 +48,31 @@ documents will be included.
 
 Results on synthetic data do not establish real-world performance.
 
-## Current status
+## Results and scope
 
-- Project skeleton
-- Shared failure-category definitions
-- Initial unit tests
+A reproducible text-classification project for synthetic engineering
+test-failure triage.
+
+Selected model: word TF-IDF (1–2 grams) + logistic regression.
+
+| Evaluation | Accuracy | Macro-F1 |
+|---|---:|---:|
+| Development | 0.6917 | 0.6677 |
+| Held-out test | 0.7583 | 0.7504 |
+
+The held-out test contains 120 synthetic records from four
+scenario families. The model correctly classified 91 records.
+
+Configuration recall remains limited at 0.4667, and real-world
+performance is unknown.
+
+The project includes 84 passing automated tests, dataset validation,
+scenario-family isolation, model provenance, and a prediction CLI.
+
+See:
+
+- [Model selection and development errors](docs/model_selection.md)
+- [Model card and final evaluation](docs/model_card.md)
 
 ## Development setup
 
